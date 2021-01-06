@@ -83,6 +83,7 @@
     </header>
     <main>
       <header><h3>An IT 121 assignment by Asa White</h3></header>
+      <div id="mydiv">Greeting goes here</div>
       <p>
         This HTML5 Flexible template could be a good starting point for some of
         your projects. The template file starts by setting a background color on
@@ -124,5 +125,22 @@
       </small>
     </footer>
     <!-- END Footer -->
+    <script>
+      let myDate = new Date();
+      let myHour = myDate.getHours();
+      let myGreeting = "";
+      let myColor = "";
+
+      if (myHour > 12) {
+        myGreeting = "Good Afternoon!";
+        myColor = "orange";
+      } else {
+        myGreeting = "Good Morning?";
+        myColor = "yellow";
+      }
+
+      document.getElementById("mydiv").innerHTML = myGreeting;
+      document.body.style.backgroundColor = myColor;
+    </script>
   </body>
 </html>
