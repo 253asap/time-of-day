@@ -61,6 +61,13 @@
       nav a:hover {
         text-decoration: none;
       }
+      #mydiv {
+        font-weight: bold;
+        font-size: 36px;
+      }
+      .day {
+        color: rgb(62, 102, 235);
+      }
     </style>
 
     <!--[if ltIE9]>
@@ -108,11 +115,12 @@
         src="http://dummyimage.com/300x400"
         alt="Picture of Me!"
         class="flexible"
+        id="mypic"
       />
     </main>
     <footer>
       <small
-        >&copy; 2013, All Rights Reserved ~
+        >&copy; 2013 - <span id="copyRight"></span>, All Rights Reserved ~
         <a href="https://validator.w3.org/check/referer" target="_blank"
           >Valid HTML</a
         >
@@ -130,17 +138,73 @@
       let myHour = myDate.getHours();
       let myGreeting = "";
       let myColor = "";
+      let myPic = "images/";
+      let day = "";
 
-      if (myHour > 12) {
-        myGreeting = "Good Afternoon!";
-        myColor = "orange";
-      } else {
-        myGreeting = "Good Morning?";
-        myColor = "yellow";
+      switch (myDate.getDay()) {
+        case 0:
+          day = "Sunday";
+          break;
+        case 1:
+          day = "Monday";
+          break;
+        case 2:
+          day = "Tuesday";
+          break;
+        case 3:
+          day = "Wednesday";
+          break;
+        case 4:
+          day = "Thursday";
+          break;
+        case 5:
+          day = "Friday";
+          break;
+        default:
+          day = "Saturday";
       }
 
+      if (myHour > 4 && myHour < 12) {
+        myGreeting =
+          "Good Morning!" +
+          " Today is " +
+          '<span class="day">' +
+          day +
+          "</span>!";
+        myColor = "orange";
+        myPic += "morning.jpg";
+      } else if (myHour > 11 && myHour < 18) {
+        myGreeting =
+          "Good Afternoon!" +
+          " Today is " +
+          '<span class="day">' +
+          day +
+          "</span>!";
+        myColor = "green";
+        myPic += "afternoon.jpg";
+      } else if (myHour > 17 && myHour < 23) {
+        myGreeting =
+          "Good Evening!" +
+          " Today is " +
+          '<span class="day">' +
+          day +
+          "</span>!";
+        myColor = "yellow";
+        myPic += "evening.jpg";
+      } else {
+        myGreeting =
+          "Good Night!" +
+          " Today is " +
+          '<span class="day">' +
+          day +
+          "</span>!";
+        myColor = "purple";
+        myPic += "night.jpg";
+      }
+      document.getElementById("mypic").src = myPic;
       document.getElementById("mydiv").innerHTML = myGreeting;
       document.body.style.backgroundColor = myColor;
+      document.getElementById("copyRight").innerHTML = myDate.getFullYear();
     </script>
   </body>
 </html>
